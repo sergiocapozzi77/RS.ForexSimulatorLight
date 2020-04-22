@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("RS.Trading.ForexSimulator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard")]
+[assembly: AssemblyCompany("Racing Solutions Ltd")]
 [assembly: AssemblyProduct("RS.Trading.ForexSimulator")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard 2020")]
+[assembly: AssemblyCopyright("Copyright © Racing Solutions Ltd 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

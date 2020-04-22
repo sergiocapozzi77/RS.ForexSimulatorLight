@@ -139,6 +139,16 @@ namespace RS.Trading.ForexSimulator.ViewModel
             }
         }
 
+        public double Profit
+        {
+            get { return profit; }
+            set
+            {
+                profit = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
         public double TotalPL
         {
             get { return totalPL; }
@@ -169,6 +179,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
 
             CurrentPL = OpenOrders.Sum( x => x.PL);
             TotalPL = CurrentPL + ClosedOrders.Sum( x => x.PL);
+            Profit = ClosedOrders.Sum( x => x.PL);
         }
 
         public Prices CurrentPrice
@@ -329,6 +340,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
+        private double profit;
 
         protected virtual void Dispose(bool disposing)
         {

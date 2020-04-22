@@ -16,6 +16,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="RightAlign">
             <TextBlock HorizontalAlignment="Right" Text="{Binding}" />
         </DataTemplate>
@@ -24,9 +25,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="187*" />
-            <RowDefinition Height="100" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListBox Height="100" VerticalAlignment="Bottom" ItemsSource="{Binding Logs}" Grid.Row="2" />
+        <ListBox Visibility="{Binding ElementName=ShowLogsCheckBox, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" Height="100" VerticalAlignment="Bottom" ItemsSource="{Binding Logs}" Grid.Row="2" />
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Button Content="{Binding LockButtonCaption}" Command="{Binding ToggleLockCommand}" HorizontalAlignment="Left"
                     Margin="10,0,0,0" VerticalAlignment="Center" Width="90" />
@@ -48,7 +49,12 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
+            <CheckBox Content="Show Logs" Name="ShowLogsCheckBox" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"></CheckBox>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0" Text="Profit:" FontWeight="Bold" />
+                <TextBlock VerticalAlignment="Center" Margin="5,0,25,0" Text="{Binding Profit, StringFormat=N2}"
+                           FontWeight="Bold" />
+
                 <TextBlock VerticalAlignment="Center" Margin="5,0,0,0" Text="Total P/L:" FontWeight="Bold" />
                 <TextBlock VerticalAlignment="Center" Margin="5,0,25,0" Text="{Binding TotalPL, StringFormat=N2}"
                            FontWeight="Bold" />
