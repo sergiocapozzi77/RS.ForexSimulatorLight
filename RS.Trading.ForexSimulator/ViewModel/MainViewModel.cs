@@ -5,7 +5,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Threading;
-
+using NLog;
 using RS.Trading.ForexSimulator.Models;
 using RS.Trading.ForexSimulator.Services;
 
@@ -13,10 +13,10 @@ namespace RS.Trading.ForexSimulator.ViewModel
 {
     public class MainViewModel : ViewModelBase, IDisposable
     {
+        private readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
         public ObservableCollection<OrderViewModel> OpenOrders { get; set; }
         public ObservableCollection<OrderViewModel> ClosedOrders { get; set; }
-
-        public int Spread { get; set; }
 
         private IMt4CommunicationService communicationService;
         /// <summary>
@@ -58,7 +58,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
 
         private void CommunicationService_Error(object sender, string e)
         {
-           AddLog(e);
+           this.AddErrorLog(e);
         }
 
         private void ToggleLock(OrderViewModel obj)
@@ -97,7 +97,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
         private void CommunicationService_ChartInfo(object sender, ChartInfo e)
         {
             this.ChartInfo = e;
-            this.AddLog("Chart info received");
+            this.AddInfoLog("Chart info received");
             IsChartLocked = true;
             DispatcherHelper.CheckBeginInvokeOnUI(() => CommandManager.InvalidateRequerySuggested());
         }
@@ -106,6 +106,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
         {
             var order = new Order(CurrentPrice.Close - GetSpreadInPip() * this.chartInfo.Point, CurrentOrderId++, LotSize, null, null, OrderType.Sell);
             this.OpenOrders.Add(new OrderViewModel(order));
+            AddInfoLog($"Sell order placed at price {CurrentPrice.Close} with lot {LotSize} and spread {Spread}");
         }
 
         public int CurrentOrderId { get; set; }
@@ -114,6 +115,17 @@ namespace RS.Trading.ForexSimulator.ViewModel
         {
             var order = new Order(CurrentPrice.Close + GetSpreadInPip() * this.chartInfo.Point, CurrentOrderId++, LotSize, null, null, OrderType.Buy);
             this.OpenOrders.Add(new OrderViewModel(order));
+            AddInfoLog($"Buy order placed at price {CurrentPrice.Close} with lot {LotSize} and spread {Spread}");
+        }
+
+        public int Spread
+        {
+            get { return spread; }
+            set
+            {
+                spread = value;
+                this.RaisePropertyChanged();
+            }
         }
 
         double GetSpreadInPip()
@@ -195,7 +207,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
         private void CommunicationService_PricesUpdated(object sender, Prices price)
         {
             CurrentPrice = price;
-            this.AddLog("Prices updated: " + price.Close);
+            this.AddInfoLog("Prices updated: " + price.Close);
             DispatcherHelper.CheckBeginInvokeOnUI(() => CalculatePNL());
             DispatcherHelper.CheckBeginInvokeOnUI(() => CommandManager.InvalidateRequerySuggested()); 
         }
@@ -268,12 +280,19 @@ namespace RS.Trading.ForexSimulator.ViewModel
 
         private void CommunicationService_DataReceived(object sender, string data)
         {
-            this.AddLog(data);
+            this.AddInfoLog(data);
         }
 
-        private void AddLog(string data)
+        private void AddInfoLog(string data)
         {
             DispatcherHelper.CheckBeginInvokeOnUI(() => this.Logs.Add(data));
+            this.logger.Info(data);
+        }
+
+        private void AddErrorLog(string data)
+        {
+            DispatcherHelper.CheckBeginInvokeOnUI(() => this.Logs.Add("ERROR: " + data));
+            this.logger.Error(data);
         }
 
         private void GetOpenTrades()
@@ -341,6 +360,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
         private double profit;
+        private int spread;
 
         protected virtual void Dispose(bool disposing)
         {

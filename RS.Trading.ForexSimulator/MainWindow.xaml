@@ -41,8 +41,11 @@
             <Button Content="Sell" Background="Red" Foreground="White" Command="{Binding SellCommand}"
                     HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="70" />
             <TextBlock Text="Lot: " Margin="10,0,0,0" VerticalAlignment="Center" />
-            <xctk:DoubleUpDown Value="{Binding LotSize}" Height="20" Margin="10,10,0,10" VerticalAlignment="Center"
+            <xctk:DoubleUpDown Value="{Binding LotSize}" Height="20" Margin="10,0,0,0" VerticalAlignment="Center"
                                Width="66" Increment="0.01" Minimum="0.01" Maximum="20" />
+            <TextBlock Text="Spread: " Margin="10,0,0,0" VerticalAlignment="Center" />
+            <xctk:IntegerUpDown Value="{Binding Spread}" Height="20" Margin="10,0,0,0" VerticalAlignment="Center"
+                               Width="66" Increment="1" Minimum="0"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
