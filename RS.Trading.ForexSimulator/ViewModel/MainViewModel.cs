@@ -47,12 +47,18 @@ namespace RS.Trading.ForexSimulator.ViewModel
             this.communicationService.DataReceived += CommunicationService_DataReceived;
             this.communicationService.PricesUpdated += CommunicationService_PricesUpdated;
             this.communicationService.ChartInfo += CommunicationService_ChartInfo;
+            this.communicationService.Error += CommunicationService_Error;
 
             IsChartLocked = false;
             Logs = new ObservableCollection<string>();
             this.LotSize = 0.01;
             this.Spread = 10;
             OpenOrders.CollectionChanged += OpenOrders_CollectionChanged;
+        }
+
+        private void CommunicationService_Error(object sender, string e)
+        {
+           AddLog(e);
         }
 
         private void ToggleLock(OrderViewModel obj)
@@ -270,7 +276,6 @@ namespace RS.Trading.ForexSimulator.ViewModel
         {
             communicationService.Connect();
             IsConnected = true;
-            Logs.Add("Connected");
         }
 
         public ICommand BuyCommand { get; set; }

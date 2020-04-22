@@ -151,8 +151,9 @@ namespace RS.Trading.ForexSimulator.Services
                 var cmd = JsonConvert.DeserializeObject<Mql4PostCommand>(request);
                 this.ParseRequest(context.Response, cmd);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                this.Error?.Invoke(this, e.Message);
             }
         }
 
