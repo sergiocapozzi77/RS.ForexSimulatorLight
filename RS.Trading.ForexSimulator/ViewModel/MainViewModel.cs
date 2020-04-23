@@ -97,7 +97,6 @@ namespace RS.Trading.ForexSimulator.ViewModel
         private void CommunicationService_ChartInfo(object sender, ChartInfo e)
         {
             this.ChartInfo = e;
-            this.AddInfoLog("Chart info received");
             IsChartLocked = true;
             DispatcherHelper.CheckBeginInvokeOnUI(() => CommandManager.InvalidateRequerySuggested());
         }
