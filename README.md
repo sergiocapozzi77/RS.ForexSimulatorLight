@@ -4,8 +4,8 @@ It lets you move back in time and replay the market, moving one candle at time. 
 
 # Getting Started
 1.	Installation process
-- [Download the Expert](/Metatrader/RS.TradingSimulator_v0.1.mq4)
-- [Install the softare]
+- [Download the Expert](/Metatrader/RS.TradingSimulator_v0.1.mq4.zip)
+- [Install the softare](https://github.com/sergiocapozzi77/RS.ForexSimulatorLight/raw/deployment/RS.Trading.ForexSimulator/publish/setup.exe)
 
 2.	Software dependencies
 3.	Latest releases
