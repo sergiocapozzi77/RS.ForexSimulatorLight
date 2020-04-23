@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RS.Trading.ForexSimulator",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metatrader", "Metatrader", "{5E7B32F4-53E7-41FB-8E95-9F7D3ED6713C}"
 	ProjectSection(SolutionItems) = preProject
-		Metatrader\RS.TradingSimulator_v0.1.mq4 = Metatrader\RS.TradingSimulator_v0.1.mq4
+		Metatrader\RS.TradingSimulator_v0.1.mq4.zip = Metatrader\RS.TradingSimulator_v0.1.mq4.zip
 	EndProjectSection
 EndProject
 Global
