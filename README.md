@@ -4,7 +4,7 @@ It lets you move back in time and replay the market, moving one candle at time. 
 
 # Installation process
 - [Download the Expert](https://github.com/sergiocapozzi77/RS.ForexSimulatorLight/raw/master/Metatrader/RS.TradingSimulator_v0.1.mq4.zip) unzip it and copy in your Metatrader data folder
-- [Install the softare](https://github.com/sergiocapozzi77/RS.ForexSimulatorLight/raw/deployment/RS.Trading.ForexSimulator/publish/setup.exe). You may be prompted that the file may be dangerous for your PC...well, it can't be more dangerous than investing in Forex :)
+- [Install the software](https://github.com/sergiocapozzi77/RS.ForexSimulatorLight/raw/deployment/RS.Trading.ForexSimulator/publish/setup.exe) You may be prompted that the file may be dangerous for your PC...well, it can't be more dangerous than investing in Forex :)
 
 # Quick start
 - Start the RS.Forex Simulator software from your PC
