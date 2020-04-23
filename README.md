@@ -1,9 +1,12 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+Forex Simulator is a step by step backtest software for MetaTrader 4.
+It lets you move back in time and replay the market, moving one candle at time. It shows you charts, indicators and you are able to place your orders, close them, just like you were trading live.
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 1.	Installation process
+Download the Expert: https://raw.githubusercontent.com/sergiocapozzi77/RS.ForexSimulatorLight/master/Metatrader/RS.TradingSimulator_v0.1.mq4
+Install the softare:
+
 2.	Software dependencies
 3.	Latest releases
 4.	API references
