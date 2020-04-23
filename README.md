@@ -4,20 +4,8 @@ It lets you move back in time and replay the market, moving one candle at time. 
 
 # Getting Started
 1.	Installation process
-- [Download the Expert](/Metatrader/RS.TradingSimulator_v0.1.mq4.zip)
-- [Install the softare](https://github.com/sergiocapozzi77/RS.ForexSimulatorLight/raw/deployment/RS.Trading.ForexSimulator/publish/setup.exe)
-
-2.	Software dependencies
-3.	Latest releases
-4.	API references
-
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+- [Download the Expert](/Metatrader/RS.TradingSimulator_v0.1.mq4.zip) and copy it in your Metatrader data folder
+- [Install the softare](https://github.com/sergiocapozzi77/RS.ForexSimulatorLight/raw/deployment/RS.Trading.ForexSimulator/publish/setup.exe). You may be prompted that the file may be dangerous for your PC...well, it can't be more dangerous than investing in Forex :)
 
 # Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+You are welcome to contribute to this project...especially if you will share your investment profits with me :) 
