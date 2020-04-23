@@ -15,5 +15,7 @@ You can watch an "how to install" video [here](https://youtu.be/SnnO2dPEsE0)
 - Move the chart backward, until you find the place you want to start with
 - Go back to the RS.Forex Simulator software, click on "Lock Chart" and start testing!
 
+You can watch a "getting started" video [here](https://youtu.be/BCy6ho7hIDM)
+
 # Contribute
 You are welcome to contribute to this project...especially if you will share your investment profits with me :) 
