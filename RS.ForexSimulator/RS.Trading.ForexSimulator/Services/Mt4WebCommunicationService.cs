@@ -21,6 +21,7 @@ namespace RS.Trading.ForexSimulator.Services
         private CancellationTokenSource cancellationTokenSource;
 
         private DateTime lastPriceUpdateTime = DateTime.MinValue;
+        private HttpListener listener;
 
         public event EventHandler<ChartInfo> ChartInfo;
 
@@ -67,6 +68,14 @@ namespace RS.Trading.ForexSimulator.Services
         public void StepChart()
         {
             this.commandQueue.Add(new CommandQueueElement(CommandType.StepChart));
+        }
+
+        public void Stop()
+        {
+            SpinWait.SpinUntil(() => this.commandQueue.Count == 0, TimeSpan.FromSeconds(5));
+
+            this.cancellationTokenSource.Cancel();
+            this.listener.Stop();
         }
 
         public void UnlockChart()
@@ -162,12 +171,12 @@ namespace RS.Trading.ForexSimulator.Services
             var cancellationToken = (CancellationToken)obj;
 
             var prefix = "http://localhost:80/";
-            var listener = new HttpListener();
-            listener.Prefixes.Add(prefix);
+            this.listener = new HttpListener();
+            this.listener.Prefixes.Add(prefix);
 
             try
             {
-                listener.Start();
+                this.listener.Start();
             }
             catch (HttpListenerException hlex)
             {
@@ -175,13 +184,13 @@ namespace RS.Trading.ForexSimulator.Services
                 return;
             }
 
-            while (listener.IsListening &&
+            while (this.listener.IsListening &&
                    !cancellationToken.IsCancellationRequested)
             {
-                ThreadPool.QueueUserWorkItem(this.Process, listener.GetContext());
+                ThreadPool.QueueUserWorkItem(this.Process, this.listener.GetContext());
             }
 
-            listener.Close();
+            this.listener.Close();
         }
 
         private static void SendOkResponse(HttpListenerResponse response)

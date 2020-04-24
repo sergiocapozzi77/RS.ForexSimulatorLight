@@ -9,6 +9,8 @@ using System.Windows;
 
 using GalaSoft.MvvmLight.Threading;
 
+using RS.Trading.ForexSimulator.ViewModel;
+
 namespace RS.Trading.ForexSimulator
 {
     /// <summary>
@@ -19,6 +21,12 @@ namespace RS.Trading.ForexSimulator
         public App()
         {
             DispatcherHelper.Initialize();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            ViewModelLocator.Cleanup();
         }
 
         protected override void OnStartup(StartupEventArgs e)

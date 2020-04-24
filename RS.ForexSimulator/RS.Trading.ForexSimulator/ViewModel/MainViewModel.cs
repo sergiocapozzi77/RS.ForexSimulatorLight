@@ -371,6 +371,7 @@ namespace RS.Trading.ForexSimulator.ViewModel
                 }
 
                 this.communicationService.UnlockChart();
+                this.communicationService.Stop();
 
                 disposedValue = true;
             }

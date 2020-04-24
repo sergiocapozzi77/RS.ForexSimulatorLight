@@ -27,5 +27,6 @@ namespace RS.Trading.ForexSimulator.Services
         void GetCurrentPrices();
         void StepBackChart();
         void UnlockChart();
+        void Stop();
     }
 }
